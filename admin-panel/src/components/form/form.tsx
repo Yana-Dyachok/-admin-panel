@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { IBicycle } from '../../types/interface';
 import { MaterialType, FrameType, BicycleType } from '../../types/enum';
 import { hexToRgb, rgbToHex } from '@mui/material';
+import createBicycle from '../../api/post-api';
 
 export const formBicycle = () => {
     const [bicycleData, setBicycleData] = useState<IBicycle>({
@@ -29,9 +30,14 @@ export const formBicycle = () => {
         setBicycleData({ ...bicycleData, [name]: value });
     };
 
-    const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
-        console.log(bicycleData);
+        try {
+            const createdBicycle = await createBicycle(bicycleData);
+            console.log('ok:', createdBicycle);
+        } catch (error) {
+            console.error('Error:', error);
+        }
     };
 
     const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -85,13 +91,6 @@ export const formBicycle = () => {
                     name="color"
                     defaultValue={bicycleData.color}
                     onChange={handleColorChange}
-                />
-                <input
-                    type="text"
-                    placeholder="Bicycle type"
-                    name="bicycleType"
-                    defaultValue={bicycleData.bicycleType}
-                    onChange={handleInputChange}
                 />
 
                 <input
@@ -261,7 +260,7 @@ export const formBicycle = () => {
                             onChange={handleInputChange}
                         />
                         <label
-                            className="wheel-diameter__label"
+                         className="material-type__label"
                             htmlFor="materialType"
                         >
                             Aluminium
@@ -275,7 +274,7 @@ export const formBicycle = () => {
                             onChange={handleInputChange}
                         />
                         <label
-                            className="wheel-diameter__label"
+                            className="material-type__label"
                             htmlFor="materialType"
                         >
                             {' '}
@@ -290,7 +289,7 @@ export const formBicycle = () => {
                             onChange={handleInputChange}
                         />
                         <label
-                            className="wheel-diameter__label"
+                            className="material-type__label"
                             htmlFor="materialType"
                         >
                             {' '}
@@ -340,10 +339,11 @@ export const formBicycle = () => {
                         />
                     </div>
                     <textarea
-                        placeholder="Description"
-                        value={bicycleData.description}
-                        onChange={handleInputChange}
-                    ></textarea>
+                placeholder="Description"
+                name='description'
+                value={bicycleData.description}
+                onChange={handleInputChange}
+            ></textarea>
                 </div>
             </div>
             <button type="submit">Send</button>
