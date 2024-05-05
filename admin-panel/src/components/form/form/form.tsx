@@ -5,7 +5,7 @@ import { hexToRgb, rgbToHex } from '@mui/material';
 import { bicycleTypes, wheelSizes, materialTypes } from './const-form';
 import createBicycle from '../../../api/post-api';
 
-export const formBicycle = () => {
+export const FormBicycle = () => {
     const [bicycleData, setBicycleData] = useState<IBicycle>({
         name: '',
         bicycleType: BicycleType.MOUNTAIN,
