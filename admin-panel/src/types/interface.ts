@@ -21,3 +21,8 @@ export interface IBicycle {
   export interface IBicycleData extends IBicycle{
     id: string;
   }
+
+  export interface IImgRequest {
+     id: string,
+     images: string[];
+  }
