@@ -21,8 +21,10 @@ export const FormBicycle = () => {
         brakeType: '',
         brand: '',
         quantity: 0,
-        images: [],
+        images:[],
     });
+
+    const [images, setImage] = useState<string>('');
 
     const handleInputChange = (
         event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -32,36 +34,29 @@ export const FormBicycle = () => {
         setBicycleData({ ...bicycleData, [name]: value });
     };
     
-
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
-            const createdBicycle = await createBicycle(bicycleData);
+            const createdBicycle = await createBicycle({
+                ...bicycleData,
+                images: [images],
+            });
             console.log('ok:', createdBicycle);
         } catch (error) {
             console.error('Error:', error);
         }
     };
-
-    const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        if (event.target.files) {
-            const filesArray = Array.from(event.target.files);
-            const base64FilesArray: string[] = [];
-
-            filesArray.forEach((file) => {
-                const reader = new FileReader();
-                reader.readAsDataURL(file);
-                reader.onload = () => {
-                    const base64String = reader.result as string;
-                    base64FilesArray.push(base64String);
-                    setBicycleData({
-                        ...bicycleData,
-                        images: base64FilesArray,
-                    });
-                };
-            });
-        }
-    };
+    
+    const changeImageHandler = (e: any) => {
+        let file = e.target.files[0];
+        let reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onloadend = () => {
+          if (reader.result) {
+            setImage(reader.result.toString().split(",")[1]);
+          }
+        };
+      };
 
     const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const hexColor = event.target.value;
@@ -258,7 +253,7 @@ export const FormBicycle = () => {
                             type="file"
                             multiple
                             accept="image/*"
-                            onChange={handleImageChange}
+                            onChange={changeImageHandler}
                             required
                         />
                     </div>

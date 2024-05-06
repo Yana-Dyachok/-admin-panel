@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import deleteCardAPI from '../../api/delete-api';
-import { formBicycle } from '../../components/form/form/form';
+import { FormBicycle } from '../../components/form/form/form';
 
 export const FormPage = () => {
     const [clicked, setClicked] = useState(false);
@@ -11,7 +11,7 @@ export const FormPage = () => {
         setClicked(true);
         setIsLoading(true);
         try {
-            await deleteCardAPI('3fa85f64-5717-4562-b3fc-2c963f66afa6');
+            await deleteCardAPI('4fd3a6fe-7cf6-4ae7-8732-4fcdfcdfd165');
             setIsDeleted(true);
         } catch (error) {
             console.error('Error deleting card:', error);
@@ -34,6 +34,6 @@ export const FormPage = () => {
         //     <h1>Click to delete card</h1>
         //   )}
         // </div>
-        <div>{formBicycle()}</div>
+        <div>{FormBicycle()}</div>
     );
 };
