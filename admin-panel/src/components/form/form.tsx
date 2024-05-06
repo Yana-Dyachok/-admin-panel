@@ -1,9 +1,9 @@
 import { useState } from 'react';
-import { IBicycle } from '../../../types/interface';
-import { MaterialType, FrameType, BicycleType } from '../../../types/enum';
+import { IBicycle } from '../../types/interface';
+import { MaterialType, FrameType, BicycleType } from '../../types/enum';
 import { hexToRgb, rgbToHex } from '@mui/material';
 import { bicycleTypes, wheelSizes, materialTypes } from './const-form';
-import createBicycle from '../../../api/post-api';
+import createBicycle from '../../api/post-api';
 
 export const FormBicycle = () => {
     const [bicycleData, setBicycleData] = useState<IBicycle>({
@@ -21,7 +21,7 @@ export const FormBicycle = () => {
         brakeType: '',
         brand: '',
         quantity: 0,
-        images:[],
+        images: [],
     });
 
     const [images, setImage] = useState<string>('');
@@ -30,10 +30,13 @@ export const FormBicycle = () => {
         event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
     ) => {
         const { name } = event.target;
-        const value = event.target.type === 'checkbox' ? !bicycleData.sale : event.target.value;
+        const value =
+            event.target.type === 'checkbox'
+                ? !bicycleData.sale
+                : event.target.value;
         setBicycleData({ ...bicycleData, [name]: value });
     };
-    
+
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         try {
@@ -46,7 +49,7 @@ export const FormBicycle = () => {
             console.error('Error:', error);
         }
     };
-    
+
     const changeImageHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const file = e.target.files?.[0];
         if (file) {
@@ -54,11 +57,11 @@ export const FormBicycle = () => {
             reader.readAsDataURL(file);
             reader.onloadend = () => {
                 if (reader.result) {
-                    setImage(reader.result.toString().split(",")[1]);
+                    setImage(reader.result.toString().split(',')[1]);
                 }
             };
         }
-    };    
+    };
 
     const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const hexColor = event.target.value;

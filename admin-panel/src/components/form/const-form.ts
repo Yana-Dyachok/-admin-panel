@@ -1,4 +1,4 @@
-import { MaterialType, BicycleType } from "../../../types/enum";
+import { MaterialType, BicycleType } from '../../types/enum';
 export const wheelSizes = [
     { value: 26, label: '26' },
     { value: 28, label: '28' },

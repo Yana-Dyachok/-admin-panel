@@ -22,7 +22,6 @@ export interface IBicycle {
     id: string;
   }
 
-  export interface IImgRequest {
-     id: string,
-     images: string[];
+  export interface IAllBicycles {
+    bicycles: IBicycleData[];
   }
