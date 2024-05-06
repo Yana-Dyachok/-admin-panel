@@ -47,16 +47,18 @@ export const FormBicycle = () => {
         }
     };
     
-    const changeImageHandler = (e: any) => {
-        let file = e.target.files[0];
-        let reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onloadend = () => {
-          if (reader.result) {
-            setImage(reader.result.toString().split(",")[1]);
-          }
-        };
-      };
+    const changeImageHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onloadend = () => {
+                if (reader.result) {
+                    setImage(reader.result.toString().split(",")[1]);
+                }
+            };
+        }
+    };    
 
     const handleColorChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const hexColor = event.target.value;
