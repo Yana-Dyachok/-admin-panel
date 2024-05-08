@@ -5,6 +5,8 @@ import { hexToRgb, rgbToHex } from '@mui/material';
 import { bicycleTypes, wheelSizes, materialTypes } from './const-form';
 import createBicycle from '../../api/post-api';
 
+import styles from "./form.module.css"
+
 export const FormBicycle = () => {
     const [bicycleData, setBicycleData] = useState<IBicycle>({
         name: '',
@@ -20,7 +22,7 @@ export const FormBicycle = () => {
         guarantee: 0,
         brakeType: '',
         brand: '',
-        quantity: 0,
+        quantity: 1,
         images: [],
     });
 
@@ -83,6 +85,7 @@ export const FormBicycle = () => {
         <form onSubmit={handleSubmit}>
             <div>
                 <input
+                    className={styles.input}
                     type="text"
                     placeholder="Name"
                     name="name"
@@ -99,6 +102,7 @@ export const FormBicycle = () => {
                 />
 
                 <input
+                   className={styles.input}
                     type="text"
                     placeholder="Brand name"
                     name="brand"
@@ -107,6 +111,7 @@ export const FormBicycle = () => {
                     required
                 />
                 <input
+                   className={styles.input}
                     type="text"
                     placeholder="Brake type"
                     name="brakeType"
@@ -115,11 +120,12 @@ export const FormBicycle = () => {
                     required
                 />
 
-                <div className="bike__input">
+                <div >
                     <label className="price__label" htmlFor="price">
                         Price
                     </label>
                     <input
+                       className={styles.input}
                         type="number"
                         name="price"
                         defaultValue={bicycleData.price}
@@ -128,11 +134,12 @@ export const FormBicycle = () => {
                     />
                 </div>
 
-                <div className="bike__input">
+                <div>
                     <label className="weight__label" htmlFor="weight">
                         Weight
                     </label>
                     <input
+                       className={styles.input}
                         type="number"
                         name="weight"
                         defaultValue={bicycleData.weight}
@@ -141,25 +148,28 @@ export const FormBicycle = () => {
                     />
                 </div>
 
-                <div className="bike__input">
+                <div>
                     <label className="quantity__label" htmlFor="quantity">
                         {' '}
                         Quantity
                     </label>
                     <input
+                       className={styles.input}
                         type="number"
                         name="quantity"
+                        min={1}
                         defaultValue={bicycleData.quantity}
                         onChange={handleInputChange}
                         required
                     />
                 </div>
 
-                <div className="bike__input">
+                <div>
                     <label className="guarantee__label" htmlFor="guarantee">
                         Guarantee
                     </label>
                     <input
+                       className={styles.input}
                         type="number"
                         name="guarantee"
                         defaultValue={bicycleData.guarantee}

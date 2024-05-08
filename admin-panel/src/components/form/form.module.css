@@ -1,0 +1,9 @@
+@import "../../styles/colors.css";
+
+.input {
+    padding: 1rem;
+    font-size: 1.8rem;
+    line-height: 1;
+    border-radius: 1rem;
+    border: 0.1rem solid var(--c-dark);
+  }

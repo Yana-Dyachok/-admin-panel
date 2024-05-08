@@ -12,7 +12,6 @@ export const BicyclePage = () => {
             try {
                 const data = await getBicycle();
                 setBicycleData(data);
-                console.log(bicycleData)
             } catch (error) {
                 console.error('Error fetching bicycle data:', error);
             }
@@ -31,13 +30,14 @@ export const BicyclePage = () => {
         }
     };
 
-    // useEffect(() => {
-    //     console.log('Updated bicycleData:', bicycleData);
-    // }, [bicycleData]);
+    useEffect(() => {
+        console.log('Updated bicycleData:', bicycleData);
+    }, [bicycleData]);
 
     return (
         <div>
-        <CreateBicycles bicycleData={bicycleData} deleteBicycle={deleteBicycle} />
+            <CreateBicycles bicycleData={bicycleData} deleteBicycle={deleteBicycle} />
         </div>
     );
 };
+
