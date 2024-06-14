@@ -4,6 +4,8 @@ import getBicycle from '../../api/get-api-all';
 import deleteCardAPI from '../../api/delete-api';
 import { IBicycleData } from '../../types/interface';
 
+import styles from './bicycle-page.module.css'
+
 export const BicyclePage = () => {
     const [bicycleData, setBicycleData] = useState<IBicycleData[]>([]);
     
@@ -54,7 +56,7 @@ export const BicyclePage = () => {
     };
 
     return (
-        <div>
+        <div className={styles.bicyclesBlock}>
             {bicycleData.length > 0 ? (
                 <CreateBicycles bicycleData={bicycleData} deleteBicycle={deleteBicycle} />
             ) : (
