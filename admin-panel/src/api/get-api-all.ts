@@ -1,10 +1,3 @@
-// get(endpoint, options = {}) {
-//     return this._fetchJSON(endpoint, {
-//       ...options,
-//       method: "GET"
-//     });
-//   }
-
 import { IBicycleData } from "../types/interface";
 
 export const getBicycle = async (): Promise<IBicycleData[]> => {
@@ -16,7 +9,7 @@ export const getBicycle = async (): Promise<IBicycleData[]> => {
     }
 
     const data = await response.json();
-    return data; 
+    return data.content; 
   } catch (error) {
     console.error('Error fetching bicycle data:', error);
     throw error; 
